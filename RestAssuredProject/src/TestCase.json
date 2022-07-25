@@ -1,0 +1,587 @@
+{
+	"resourceType": "Bundle",
+	"id": "83bdc704-d2ff-4762-bf69-d73522f15cf3",
+	"meta": {
+		"profile": [
+			"http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/bundle|1.0.0"
+		]
+	},
+	"type": "message",
+	"timestamp": "2022-07-24T22:11:20.762Z",
+	"entry": [
+		{
+			"fullUrl": "http://Provider_BaseURL.com.sa/MessageHeader/4c117c32-a044-44e4-bb14-33411bdccb7e",
+			"resource": {
+				"resourceType": "MessageHeader",
+				"id": "4c117c32-a044-44e4-bb14-33411bdccb7e",
+				"meta": {
+					"profile": [
+						"http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/message-header|1.0.0"
+					]
+				},
+				"eventCoding": {
+					"system": "http://nphies.sa/terminology/CodeSystem/ksa-message-events",
+					"code": "claim-request"
+				},
+				"destination": [
+					{
+						"endpoint": "http://nphies.sa/license/payer-license/INS-FHIR",
+						"receiver": {
+							"type": "Organization",
+							"identifier": {
+								"system": "http://nphies.sa/license/payer-license",
+								"value": "INS-FHIR"
+							}
+						}
+					}
+				],
+				"sender": {
+					"type": "Organization",
+					"identifier": {
+						"system": "http://nphies.sa/license/provider-license",
+						"value": "PR-FHIR"
+					}
+				},
+				"source": {
+					"endpoint": "http://nphies.sa/license/provider-license/PR-FHIR"
+				},
+				"focus": [
+					{
+						"reference": "http://Provider_BaseURL.com.sa/Claim/525432"
+					}
+				]
+			}
+		},
+		{
+			"fullUrl": "http://Provider_BaseURL.com.sa/Claim/525432",
+			"resource": {
+				"resourceType": "Claim",
+				"id": "525432",
+				"meta": {
+					"profile": [
+						"http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/oral-claim|1.0.0"
+					]
+				},
+				"extension": [
+					{
+						"url": "http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/extension-authorization-offline-date",
+						"valueDateTime": "2021-06-30T11:05:48+03:00"
+					}
+				],
+				"identifier": [
+					{
+						"system": "http://Provider_BaseURL.com.sa/claim",
+						"value": "835289"
+					}
+				],
+				"status": "active",
+				"type": {
+					"coding": [
+						{
+							"system": "http://terminology.hl7.org/CodeSystem/claim-type",
+							"code": "oral"
+						}
+					]
+				},
+				"use": "claim",
+				"patient": {
+					"reference": "http://Provider_BaseURL.com.sa/Patient/30"
+				},
+				"created": "2022-07-24T22:11:20.762Z",
+				"insurer": {
+					"reference": "http://Provider_BaseURL.com.sa/Organization/60"
+				},
+				"provider": {
+					"reference": "http://Provider_BaseURL.com.sa/Organization/50"
+				},
+				"priority": {
+					"coding": [
+						{
+							"system": "http://terminology.hl7.org/CodeSystem/processpriority",
+							"code": "normal"
+						}
+					]
+				},
+				"payee": {
+					"type": {
+						"coding": [
+							{
+								"system": "http://terminology.hl7.org/CodeSystem/payeetype",
+								"code": "provider"
+							}
+						]
+					}
+				},
+				"careTeam": [
+					{
+						"sequence": 1,
+						"provider": {
+							"reference": "http://Provider_BaseURL.com.sa/Practitioner/70"
+						},
+						"role": {
+							"coding": [
+								{
+									"system": "http://terminology.hl7.org/CodeSystem/claimcareteamrole",
+									"code": "primary"
+								}
+							]
+						},
+						"qualification": {
+							"coding": [
+								{
+									"system": "http://nphies.sa/terminology/CodeSystem/practice-codes",
+									"code": "22.00",
+									"display": "Dental"
+								}
+							]
+						}
+					}
+				],
+				"diagnosis": [
+					{
+						"sequence": 1,
+						"diagnosisCodeableConcept": {
+							"coding": [
+								{
+									"system": "http://hl7.org/fhir/sid/icd-10-am",
+									"code": "K02.5",
+									"display": "Caries with pulp exposure"
+								}
+							]
+						},
+						"type": [
+							{
+								"coding": [
+									{
+										"system": "http://nphies.sa/terminology/CodeSystem/diagnosis-type",
+										"code": "differential"
+									}
+								]
+							}
+						]
+					},
+					{
+						"sequence": 2,
+						"diagnosisCodeableConcept": {
+							"coding": [
+								{
+									"system": "http://hl7.org/fhir/sid/icd-10-am",
+									"code": "K02.9",
+									"display": "Dental caries, unspecified"
+								}
+							]
+						},
+						"type": [
+							{
+								"coding": [
+									{
+										"system": "http://nphies.sa/terminology/CodeSystem/diagnosis-type",
+										"code": "principal"
+									}
+								]
+							}
+						]
+					}
+				],
+				"insurance": [
+					{
+						"sequence": 1,
+						"focal": true,
+						"coverage": {
+							"reference": "http://Provider_BaseURL.com.sa/Coverage/1"
+						},
+						"preAuthRef": [
+							"Pseudo-payer-Portal-Auth-01"
+						]
+					}
+				],
+				"item": [
+					{
+						"extension": [
+							{
+								"url": "http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/extension-patient-share",
+								"valueMoney": {
+									"value": 0,
+									"currency": "SAR"
+								}
+							},
+							{
+								"url": "http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/extension-package",
+								"valueBoolean": false
+							},
+							{
+								"url": "http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/extension-tax",
+								"valueMoney": {
+									"value": 0,
+									"currency": "SAR"
+								}
+							}
+						],
+						"sequence": 1,
+						"careTeamSequence": [
+							1
+						],
+						"diagnosisSequence": [
+							2
+						],
+						"productOrService": {
+							"coding": [
+								{
+									"system": "http://nphies.sa/terminology/CodeSystem/oral-health-op",
+									"code": "532",
+									"display": "Direct restoration, using an adhesive technique and a tooth-coloured material, involving two surfaces of a posterior tooth."
+								}
+							]
+						},
+						"servicedDate": "2022-07-24",
+						"quantity": {
+							"value": 1
+						},
+						"unitPrice": {
+							"value": 500,
+							"currency": "SAR"
+						},
+						"net": {
+							"value": 500,
+							"currency": "SAR"
+						},
+						"bodySite": {
+							"coding": [
+								{
+									"system": "http://nphies.sa/terminology/CodeSystem/fdi-oral-region",
+									"code": "27",
+									"display": "UPPER LEFT; PERMANENT TEETH # 7"
+								}
+							]
+						}
+					},
+					{
+						"extension": [
+							{
+								"url": "http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/extension-tax",
+								"valueMoney": {
+									"value": 0,
+									"currency": "SAR"
+								}
+							},
+							{
+								"url": "http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/extension-patient-share",
+								"valueMoney": {
+									"value": 100,
+									"currency": "SAR"
+								}
+							},
+							{
+								"url": "http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/extension-package",
+								"valueBoolean": false
+							}
+						],
+						"sequence": 2,
+						"careTeamSequence": [
+							1
+						],
+						"diagnosisSequence": [
+							1
+						],
+						"productOrService": {
+							"coding": [
+								{
+									"system": "http://nphies.sa/terminology/CodeSystem/oral-health-op",
+									"code": "458",
+									"display": "Interim therapeutic root filling   per tooth"
+								}
+							]
+						},
+						"servicedDate": "2022-07-24",
+						"quantity": {
+							"value": 1
+						},
+						"unitPrice": {
+							"value": 500,
+							"currency": "SAR"
+						},
+						"net": {
+							"value": 500,
+							"currency": "SAR"
+						},
+						"bodySite": {
+							"coding": [
+								{
+									"system": "http://nphies.sa/terminology/CodeSystem/fdi-oral-region",
+									"code": "24",
+									"display": "UPPER LEFT; PERMANENT TEETH # 4"
+								}
+							]
+						}
+					}
+				],
+				"total": {
+					"value": 1000,
+					"currency": "SAR"
+				}
+			}
+		},
+		{
+			"fullUrl": "http://Provider_BaseURL.com.sa/Organization/50",
+			"resource": {
+				"resourceType": "Organization",
+				"id": "50",
+				"meta": {
+					"profile": [
+						"http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/provider-organization|1.0.0"
+					]
+				},
+				"identifier": [
+					{
+						"system": "http://nphies.sa/license/provider-license",
+						"value": "PR-FHIR"
+					}
+				],
+				"active": true,
+				"type": [
+					{
+						"coding": [
+							{
+								"system": "http://nphies.sa/terminology/CodeSystem/organization-type",
+								"code": "prov"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"fullUrl": "http://Provider_BaseURL.com.sa/Patient/30",
+			"resource": {
+				"resourceType": "Patient",
+				"id": "30",
+				"meta": {
+					"profile": [
+						"http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/patient|1.0.0"
+					]
+				},
+				"identifier": [
+					{
+						"type": {
+							"coding": [
+								{
+									"system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+									"code": "PRC"
+								}
+							]
+						},
+						"system": "http://nphies.sa/identifier/iqama",
+						"value": "3000000003"
+					}
+				],
+				"active": true,
+				"name": [
+					{
+						"use": "official",
+						"text": "Test Member - health Check",
+						"family": "Test Member - health Check",
+						"given": [
+							"Test Member - health Check",
+							"Test Member - health Check"
+						]
+					}
+				],
+				"telecom": [
+					{
+						"system": "phone",
+						"value": "0123456789"
+					}
+				],
+				"gender": "female",
+				"_gender": {
+					"extension": [
+						{
+							"url": "http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/extension-ksa-administrative-gender",
+							"valueCodeableConcept": {
+								"coding": [
+									{
+										"system": "http://nphies.sa/terminology/CodeSystem/ksa-administrative-gender",
+										"code": "female"
+									}
+								]
+							}
+						}
+					]
+				},
+				"birthDate": "2004-02-24",
+				"deceasedBoolean": false,
+				"address": [
+					{
+						"use": "home",
+						"line": [
+							"Olaya Street"
+						],
+						"text": " Olaya Street, Riyadh, KSA",
+						"city": "Riyadh",
+						"country": "Saudi Arabia"
+					}
+				],
+				"maritalStatus": {
+					"coding": [
+						{
+							"system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+							"code": "U"
+						}
+					]
+				}
+			}
+		},
+		{
+			"fullUrl": "http://Provider_BaseURL.com.sa/Organization/60",
+			"resource": {
+				"resourceType": "Organization",
+				"id": "60",
+				"meta": {
+					"profile": [
+						"http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/insurer-organization|1.0.0"
+					]
+				},
+				"identifier": [
+					{
+						"system": "http://nphies.sa/license/payer-license",
+						"value": "INS-FHIR"
+					}
+				],
+				"active": true,
+				"type": [
+					{
+						"coding": [
+							{
+								"system": "http://nphies.sa/terminology/CodeSystem/organization-type",
+								"code": "ins"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"fullUrl": "http://Provider_BaseURL.com.sa/Coverage/1",
+			"resource": {
+				"resourceType": "Coverage",
+				"id": "1",
+				"meta": {
+					"profile": [
+						"http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/coverage|1.0.0"
+					]
+				},
+				"identifier": [
+					{
+						"system": "http://pseudo-payer.com.sa/memberid",
+						"value": "Test Member - health Check"
+					}
+				],
+				"status": "active",
+				"type": {
+					"coding": [
+						{
+							"system": "http://nphies.sa/terminology/CodeSystem/coverage-type",
+							"code": "EHCPOL"
+						}
+					]
+				},
+				"subscriber": {
+					"reference": "http://Provider_BaseURL.com.sa/Patient/30"
+				},
+				"subscriberId": "Test Member - health Check",
+				"beneficiary": {
+					"reference": "http://Provider_BaseURL.com.sa/Patient/30"
+				},
+				"dependent": "Test Member - health Check",
+				"relationship": {
+					"coding": [
+						{
+							"system": "http://terminology.hl7.org/CodeSystem/subscriber-relationship",
+							"code": "self"
+						}
+					]
+				},
+				"period": {
+					"start": "2021-01-01",
+					"end": "2022-01-01"
+				},
+				"payor": [
+					{
+						"reference": "http://Provider_BaseURL.com.sa/Organization/60"
+					}
+				],
+				"class": [
+					{
+						"type": {
+							"coding": [
+								{
+									"system": "http://terminology.hl7.org/CodeSystem/coverage-class",
+									"code": "class"
+								}
+							]
+						},
+						"value": "Test Member - health Check",
+						"name": "Test Member - health Check"
+					}
+				],
+				"network": "Test Member - health Check",
+				"costToBeneficiary": [
+					{
+						"type": {
+							"coding": [
+								{
+									"system": "http://nphies.sa/terminology/CodeSystem/coverage-copay-type",
+									"code": "copay"
+								}
+							]
+						},
+						"valueMoney": {
+							"value": 50,
+							"currency": "SAR"
+						}
+					}
+				],
+				"subrogation": true
+			}
+		},
+		{
+			"fullUrl": "http://Provider_BaseURL.com.sa/Practitioner/70",
+			"resource": {
+				"resourceType": "Practitioner",
+				"id": "70",
+				"meta": {
+					"profile": [
+						"http://nphies.sa/fhir/ksa/nphies-fs/StructureDefinition/practitioner|1.0.0"
+					]
+				},
+				"identifier": [
+					{
+						"type": {
+							"coding": [
+								{
+									"system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+									"code": "MD"
+								}
+							]
+						},
+						"system": "http://nphies.sa/license/practitioner-license",
+						"value": "Test practitioner for Health Check"
+					}
+				],
+				"active": true,
+				"name": [
+					{
+						"use": "official",
+						"text": "Test practitioner for Health Check",
+						"family": "Test practitioner for Health Check",
+						"given": [
+							"Test practitioner for Health Check",
+							"Test practitioner for Health Check"
+						]
+					}
+				],
+				"gender": "male"
+			}
+		}
+	]
+}
